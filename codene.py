@@ -1,5 +1,6 @@
-import yaml
 import os
+
+import yaml
 
 # Thư mục gốc dataset vehicle
 root = r"D:/2025/FA25/AIL/yolo"
@@ -13,9 +14,9 @@ names = ["car", "truck", "bus", "motorcycle"]
 # Dữ liệu train/val
 data = {
     "train": f"{root}/images/train",  # thư mục train của vehicle
-    "val": f"{root}/images/val",      # thư mục val của vehicle
+    "val": f"{root}/images/val",  # thư mục val của vehicle
     "nc": len(names),
-    "names": names
+    "names": names,
 }
 
 # Ghi file YAML

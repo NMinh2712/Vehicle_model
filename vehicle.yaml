@@ -2,7 +2,7 @@ train: D:/2025/FA25/AIL/yolo/images/train
 val: D:/2025/FA25/AIL/yolo/images/val
 nc: 4
 names:
-- car
-- truck
-- bus
-- motorcycle
+  - car
+  - truck
+  - bus
+  - motorcycle

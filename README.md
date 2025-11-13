@@ -511,6 +511,8 @@ For bug reports and feature requests related to YOLOv5, please visit [GitHub Iss
   <img src="https://github.com/ultralytics/assets/raw/main/social/logo-transparent.png" width="3%" alt="space">
   <a href="https://discord.com/invite/ultralytics"><img src="https://github.com/ultralytics/assets/raw/main/social/logo-social-discord.png" width="3%" alt="Ultralytics Discord"></a>
 </div>
-#   V e h i c l e _ m o d e l  
- #   V e h i c l e _ m o d e l  
+#   V e h i c l e _ m o d e l 
+ 
+ #   V e h i c l e _ m o d e l 
+ 
  

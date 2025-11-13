@@ -1,4 +1,6 @@
-import os, glob
+import glob
+import os
+
 from PIL import Image
 
 DATASET_DIR = "/content/dataset"
@@ -25,15 +27,17 @@ for lbl_path in glob.glob(f"{DATASET_DIR}/labels/**/*.txt", recursive=True):
 print("Missing labels:", len(missing_labels))
 print("Corrupted images:", len(corrupted_images))
 print("Invalid labels:", len(invalid_labels))
-import glob, os
+import glob
+import os
 
 violations = []
 for p in glob.glob(f"{DATASET_DIR}/labels/**/*.txt", recursive=True):
     with open(p) as f:
-        for i, line in enumerate(f,1):
+        for i, line in enumerate(f, 1):
             parts = list(map(float, line.strip().split()))
-            if len(parts)!=5: continue
+            if len(parts) != 5:
+                continue
             _, x, y, w, h = parts
-            if not (0<=x<=1 and 0<=y<=1 and 0<=w<=1 and 0<=h<=1):
-                violations.append((p,i,(x,y,w,h)))
+            if not (0 <= x <= 1 and 0 <= y <= 1 and 0 <= w <= 1 and 0 <= h <= 1):
+                violations.append((p, i, (x, y, w, h)))
 print("Normalization violations:", len(violations))

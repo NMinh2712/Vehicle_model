@@ -1,8 +1,9 @@
-import streamlit as st
+import glob
 import os
 import subprocess
-import glob
+
 import pandas as pd
+import streamlit as st
 from PIL import Image
 
 # ================== CONFIG ==================
@@ -29,21 +30,27 @@ if uploaded_file:
 
     col1, col2 = st.columns(2)
     with col1:
-        st.image(Image.open(img_path), caption="Ảnh tải lên", width='stretch')
+        st.image(Image.open(img_path), caption="Ảnh tải lên", width="stretch")
 
     if st.button("🚀 Nhận diện xe"):
         st.info("Đang chạy YOLOv5 detect.py, vui lòng chờ...")
 
         # --- Chạy YOLOv5 detect ---
         cmd = [
-            "python", os.path.join(YOLO_DIR, "detect.py"),
-            "--weights", MODEL_PATH,
-            "--img", "640",
-            "--source", img_path,
-            "--conf", "0.25",
-            "--device", "cpu",
+            "python",
+            os.path.join(YOLO_DIR, "detect.py"),
+            "--weights",
+            MODEL_PATH,
+            "--img",
+            "640",
+            "--source",
+            img_path,
+            "--conf",
+            "0.25",
+            "--device",
+            "cpu",
             "--save-txt",
-            "--save-conf"
+            "--save-conf",
         ]
 
         result = subprocess.run(cmd, cwd=YOLO_DIR, shell=True, capture_output=True, text=True)
@@ -65,7 +72,7 @@ if uploaded_file:
                 detected_images = glob.glob(os.path.join(latest_exp, "*.jpg"))
                 with col2:
                     if detected_images:
-                        st.image(detected_images[0], caption="Ảnh kết quả", width='stretch')
+                        st.image(detected_images[0], caption="Ảnh kết quả", width="stretch")
                     else:
                         st.warning("Không tìm thấy ảnh kết quả.")
 
@@ -73,7 +80,7 @@ if uploaded_file:
                 label_files = glob.glob(os.path.join(latest_exp, "labels", "*.txt"))
                 if label_files:
                     label_file = label_files[0]
-                    with open(label_file, "r") as f:
+                    with open(label_file) as f:
                         lines = f.readlines()
 
                     results = []
