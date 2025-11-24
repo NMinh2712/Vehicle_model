@@ -1,6 +1,7 @@
-import pandas as pd
 import os
+
 import matplotlib.pyplot as plt
+import pandas as pd
 
 # --- Thay đổi theo project ---
 project_dir = "runs/train/vehicle_model"
@@ -20,9 +21,19 @@ print("=== Columns after stripping ===")
 print(df.columns.tolist())
 
 # Chọn các cột quan trọng (nếu tồn tại)
-desired_columns = ["epoch", "train/box_loss", "train/obj_loss", "train/cls_loss",
-                   "metrics/precision", "metrics/recall", "metrics/mAP_0.5", "metrics/mAP_0.5:0.95",
-                   "val/box_loss", "val/obj_loss", "val/cls_loss"]
+desired_columns = [
+    "epoch",
+    "train/box_loss",
+    "train/obj_loss",
+    "train/cls_loss",
+    "metrics/precision",
+    "metrics/recall",
+    "metrics/mAP_0.5",
+    "metrics/mAP_0.5:0.95",
+    "val/box_loss",
+    "val/obj_loss",
+    "val/cls_loss",
+]
 available_columns = [col for col in desired_columns if col in df.columns]
 
 print("\n=== Available metrics ===")
@@ -33,12 +44,11 @@ print("\n=== Last epoch ===")
 print(df[available_columns].iloc[-1])
 
 # Vẽ biểu đồ
-plt.figure(figsize=(12,5))
+plt.figure(figsize=(12, 5))
 
 # Loss
-plt.subplot(1,2,1)
-for col in ["train/box_loss", "train/obj_loss", "train/cls_loss",
-            "val/box_loss", "val/obj_loss", "val/cls_loss"]:
+plt.subplot(1, 2, 1)
+for col in ["train/box_loss", "train/obj_loss", "train/cls_loss", "val/box_loss", "val/obj_loss", "val/cls_loss"]:
     if col in available_columns:
         plt.plot(df["epoch"], df[col], label=col)
 plt.xlabel("Epoch")
@@ -47,7 +57,7 @@ plt.title("YOLOv5 Training & Validation Loss")
 plt.legend()
 
 # Accuracy metrics
-plt.subplot(1,2,2)
+plt.subplot(1, 2, 2)
 for col in ["metrics/precision", "metrics/recall", "metrics/mAP_0.5", "metrics/mAP_0.5:0.95"]:
     if col in available_columns:
         plt.plot(df["epoch"], df[col], label=col)
