@@ -1,4 +1,7 @@
-import os, shutil, random, math
+import math
+import os
+import random
+import shutil
 
 root = r"D:/2025/FA25/AIL/yolo"
 
@@ -6,7 +9,7 @@ img_dir = os.path.join(root, "images/train")
 lbl_dir = os.path.join(root, "labels/train")
 
 # Lấy danh sách ảnh
-imgs = sorted([f for f in os.listdir(img_dir) if f.lower().endswith(('.jpg', '.png'))])
+imgs = sorted([f for f in os.listdir(img_dir) if f.lower().endswith((".jpg", ".png"))])
 random.shuffle(imgs)
 
 total = len(imgs)
@@ -14,7 +17,7 @@ print("Total images:", total)
 
 # Chia đều thành 4 phần
 split_size = math.ceil(total / 4)
-parts = [imgs[i:i + split_size] for i in range(0, total, split_size)]
+parts = [imgs[i : i + split_size] for i in range(0, total, split_size)]
 
 # Đảm bảo chỉ lấy đúng 4 phần
 parts = parts[:4]
@@ -34,7 +37,7 @@ for part_index, part_imgs in enumerate(parts, start=1):
 
         shutil.copy(src_img, dst_img)
 
-        txt = img.rsplit('.', 1)[0] + ".txt"
+        txt = img.rsplit(".", 1)[0] + ".txt"
         src_lbl = os.path.join(lbl_dir, txt)
         dst_lbl = f"{root}/part{part_index}/labels/{txt}"
 
